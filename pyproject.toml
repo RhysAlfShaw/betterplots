@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bettercorners"
+version = "0.0.0"
+authors = [
+  { name="Rhys Shaw", email="rhysalfshaw@gmail.com" },
+  {name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
+]
+maintainers = [
+{name="Rhys Shaw", email="rhysc3p0@gmail.com"},
+{name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
+]
+keywords = ["Plotting", ""]
+description = "A package to make calling cutouts and catalogues from the LoFAR survey easier."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+[project.urls]
+"Homepage" = "https://github.com/RhysAlfShaw/LCSpy"
+"Bug Tracker" = "https://github.com/RhysAlfShaw/LCSpy/issues"
