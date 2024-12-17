@@ -14,7 +14,7 @@ maintainers = [
 {name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
 ]
 keywords = ["Plotting", ""]
-description = "A package to make calling cutouts and catalogues from the LoFAR survey easier."
+description = "A Corner plot library for plotting data"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
