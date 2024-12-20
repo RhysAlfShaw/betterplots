@@ -8,5 +8,5 @@ bs.set_style("betterstyle")
 # test the cornerplot function
 np.random.seed(0)
 data = np.random.randn(10000, 5)
-cornerplot(data, 5)
+fig, ax = cornerplot(data, 5)
 plt.show()
