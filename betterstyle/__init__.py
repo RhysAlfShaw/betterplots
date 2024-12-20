@@ -1,3 +1,1 @@
-import matplotlib.pyplot as plt
-
-plt.style.use("betterstyle.mlpstyle")
+from .set_style import set_style

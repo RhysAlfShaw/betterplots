@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
 
-def cornerplot(data, n_dim, labels=None, norm=LogNorm()):
+def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None):
     """
     Create a corner plot (also known as a pair plot) for visualizing the distribution of data and the relationships between pairs of dimensions.
 
@@ -12,7 +12,7 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm()):
     labels (list of str, optional): A list of labels for each dimension. If provided, these labels will be used for the axes.
 
     Returns:
-    None: This function does not return any value. It displays the plot using matplotlib.
+    tuple: (figure, axes) - The matplotlib figure and axes objects
 
     Notes:
     - The diagonal plots (i == j) show histograms of each dimension.
@@ -20,11 +20,20 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm()):
     - The upper triangle plots (i < j) are left empty.
     - If labels are provided, they are used to label the axes of the plots.
     """
-    fig, axes = plt.subplots(n_dim, n_dim, figsize=(20, 20))
+    if figsize is None:
+        figsize = (n_dim * 2, n_dim * 2)
+
+    fig, axes = plt.subplots(n_dim, n_dim, figsize=figsize)
+
+    # Remove all spacing between plots
+    plt.subplots_adjust(
+        wspace=0.0, hspace=0.0, left=0.1, right=0.9, bottom=0.1, top=0.9
+    )
+
     for i in range(n_dim):
         for j in range(n_dim):
             if i == j:
-                axes[i, j].hist(data[:, i], bins=100, color="black")
+                axes[i, j].hist(data[:, i], bins=100, histtype="step")
                 if labels is not None and i == n_dim - 1:
                     axes[i, j].set_xlabel(labels[i])
                 if labels is not None and j == 0:
@@ -39,11 +48,10 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm()):
                     axes[i, j].set_ylabel(labels[i])
             else:
                 axes[i, j].axis("off")
+
             if i < n_dim - 1:
                 axes[i, j].xaxis.set_visible(False)
             if j > 0:
                 axes[i, j].yaxis.set_visible(False)
-    plt.tight_layout()
-    plt.show()
 
     return fig, axes
