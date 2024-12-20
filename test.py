@@ -1,5 +1,7 @@
 from bettercorners import cornerplot
+import betterstyle as bstyle
 import numpy as np
+
 
 # test the cornerplot function
 np.random.seed(0)
