@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
+import numpy as np
 
 
 def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None):
@@ -20,6 +21,12 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None):
     - The upper triangle plots (i < j) are left empty.
     - If labels are provided, they are used to label the axes of the plots.
     """
+    if not isinstance(data, np.ndarray) or data.ndim != 2:
+        raise ValueError("Input data must be a 2D NumPy array.")
+    if data.shape[1] < n_dim:
+        raise ValueError(
+            f"Insufficient dimensions in data. Expected {n_dim}, got {data.shape[1]}."
+        )
     if figsize is None:
         figsize = (n_dim * 2, n_dim * 2)
 
