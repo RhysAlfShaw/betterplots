@@ -45,3 +45,5 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm()):
                 axes[i, j].yaxis.set_visible(False)
     plt.tight_layout()
     plt.show()
+
+    return fig, axes
