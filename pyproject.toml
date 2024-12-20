@@ -14,7 +14,7 @@ maintainers = [
 {name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
 ]
 keywords = ["Plotting", ""]
-description = "A Corner plot library for plotting data"
+description = "A corner Plotting Package."
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
