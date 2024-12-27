@@ -10,3 +10,8 @@ def set_style(style="betterstyle"):
         exit(f"Style file {style} not found")
 
     plt.style.use(style_path)
+
+
+def get_style():
+    # return the current style currenlty there is only one style
+    return "betterstyle"
