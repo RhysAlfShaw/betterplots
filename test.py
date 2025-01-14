@@ -1,5 +1,6 @@
 from bettercorners import cornerplot
 import betterstyle as bs
+from betterplots import pyplot as plt
 import matplotlib.pyplot as plt
 import numpy as np
 
