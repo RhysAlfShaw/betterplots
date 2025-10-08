@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-from bettercorners.main import cornerplot
+from betterplots.bettercorners.main import cornerplot
 
 matplotlib.use("Agg")  # Set non-interactive backend for testing
 import matplotlib.pyplot as plt

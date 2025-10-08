@@ -1,4 +1,4 @@
-import betterstyle as bs
+import betterplots.betterstyle as bs
 
 # test adding betterstyle style
 
