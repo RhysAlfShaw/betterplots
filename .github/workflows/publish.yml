@@ -1,17 +1,29 @@
-name: Publish to PyPI.org
+name: Publish Python Package to PyPI
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 jobs:
-  pypi:
+  build-and-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI.
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          fetch-depth: 0
-      - run: python3 -m pip install --upgrade build && python3 -m build
-      - name: Publish package
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          python-version: "3.12"
+
+      - name: Install Hatch
+        run: pip install hatch
+
+      - name: Build package with Hatch
+        run: hatch build
+
+      - name: Publish package with Hatch
+        run : hatch publish -r main -u __token__ -a ${{ secrets.HATCH_API_KEY}}

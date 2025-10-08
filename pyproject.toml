@@ -1,26 +1,70 @@
+# Specifies the build system for the package.
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
+# Core project metadata (PEP 621).
 [project]
 name = "betterplots"
-version = "0.0.0"
-authors = [
-  { name="Rhys Shaw", email="rhysc3p0@gmail.com" },
-  {name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
-]
-maintainers = [
-{name="Rhys Shaw", email="rhysc3p0@gmail.com"},
-{name="Hattie Stewart", email="hattie.stewart@bristol.ac.uk"}
-]
-keywords = ["Plotting", ""]
-description = "A corner Plotting Package."
+dynamic = ["version"]
+description = "A matplotlib-style augmenter"
 readme = "README.md"
-requires-python = ">=3.9"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
+requires-python = ">=3.8"
+license = "GPL-3.0-or-later"
+authors = [
+  { name = "Rhys Shaw", email = "rhysc3p0@gmail.com" },
 ]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+# Core runtime dependencies.
+dependencies = [
+  "matplotlib"
+]
+
 [project.urls]
-"Homepage" = "https://github.com/RhysAlfShaw/betterplots"
-"Bug Tracker" = "https://github.com/RhysAlfShaw/betterplots/issues"
+Homepage = "https://github.com/RhysAlfShaw/betterplots"
+Documentation = "https://github.com/RhysAlfShaw/betterplots#readme"
+Issues = "https://github.com/RhysAlfShaw/betterplots/issues"
+Source = "https://github.com/RhysAlfShaw/betterplots"
+
+# --- HATCH CONFIGURATION ---
+
+# Tells Hatch where to find the version variable.
+[tool.hatch.version]
+path = "betterplots/__about__.py"
+
+# Run with `hatch run <script_name>`.
+[tool.hatch.envs.default.scripts]
+test = "pytest --cov=betterplots --cov-report=term-missing"
+lint = "ruff check . && ruff format --check ."
+"lint:fix" = "ruff check . --fix && ruff format ."
+"type-check" = "mypy betterplots tests"
+
+# Configuration for Pytest coverage.
+[tool.coverage.run]
+source = ["betterplots"]
+branch = true
+parallel = true
+omit = [
+  "betterplots/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.hatch.publish.test]
+url = "https://test.pypi.org/legacy/"
+
+[tool.hatch.publish.main]
+url = "https://upload.pypi.org/legacy/"
