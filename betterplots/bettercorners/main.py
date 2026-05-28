@@ -4,7 +4,7 @@ import numpy as np
 import scipy.ndimage
 
 
-def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None):
+def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None, cmap="Greys"):
     """
     Create a corner plot (also known as a pair plot) for visualizing the distribution of data and the relationships between pairs of dimensions.
 
@@ -48,7 +48,7 @@ def cornerplot(data, n_dim, labels=None, norm=LogNorm(), figsize=None):
                     axes[i, j].set_ylabel(labels[i])
             elif i > j:
                 axes[i, j].hist2d(
-                    data[:, j], data[:, i], bins=100, cmap="jet", norm=norm
+                    data[:, j], data[:, i], bins=100, cmap=cmap, norm=norm
                 )
                 if labels is not None and i == n_dim - 1:
                     axes[i, j].set_xlabel(labels[j])
